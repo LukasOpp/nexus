@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  nexus:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - KARAKEEP_API_KEY=${KARAKEEP_API_KEY}
+      - KARAKEEP_BASE_URL=${KARAKEEP_BASE_URL}
+      - MINIFLUX_API_KEY=${MINIFLUX_API_KEY}
+      - MINIFLUX_BASE_URL=${MINIFLUX_BASE_URL}
+      - MEMORY_DB_PATH=/data/nexus_memory.db
+    volumes:
+      - nexus_data:/data
+    restart: unless-stopped
+
+volumes:
+  nexus_data:
